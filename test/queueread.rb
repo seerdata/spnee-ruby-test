@@ -65,12 +65,14 @@ class Publisher
 
     if json_array.length != 0
       filename = options.f
+      fx = File.open(filename.to_s,"w")
+      fx.write("[")
       json_array.each do |item|
         puts(filename)
-        File.open(filename.to_s,"a") do |f|
-          f.write(item)
-        end
+        fx.write(item)
+        fx.write(",")
       end
+      fx.write("]")
       print 'wrote json data to filename ', options.f; puts
     end
 
