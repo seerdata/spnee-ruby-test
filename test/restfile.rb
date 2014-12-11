@@ -12,7 +12,6 @@ class Options
     options = OpenStruct.new
     options.verbose = false
 
-    options.q = "customer"
     options.f = ""
     options.n = "localhost"
     options.p = "4567"
@@ -36,12 +35,6 @@ class Options
 
       opts.on("-e Endpoint", "Endpoint URL") do |q|
         options.e = q
-      end
-
-      # Rule Type
-
-      opts.on("-q Queue", "Queue name") do |q|
-        options.q = q
       end
 
       opts.on("-f File", "File name") do |f|
@@ -69,6 +62,7 @@ class Publisher
       url = "http://" + hostname + ":" + port + "/" + endpoint
     end
 
+    ## This function is not currently being used but is here for reference
     def get_file_as_string(filename)
       data = ''
       f = File.open(filename, "r")
