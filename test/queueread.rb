@@ -63,13 +63,20 @@ class Publisher
     sleep 1.0
     print 'json array size = ',json_array.length; puts
 
-    if json_array.length != 0
+    json_array_length = json_array.length
+    count = 1
+
+    if json_array_length != 0
       filename = options.f
       fx = File.open(filename.to_s,"w")
       fx.write("[")
       json_array.each do |item|
         fx.write(item)
-        fx.write(",")
+        if count < json_array_length
+          fx.write(",")
+          count = count + 1
+          print 'count = ', count; puts
+        end
       end
       fx.write("]")
       print 'wrote json data to filename ', options.f; puts
