@@ -1,7 +1,9 @@
 require 'bunny'
+require 'json'
 require 'optparse'
 require 'ostruct'
 require 'pp'
+require 'rest_client'
 
 class Options
 
@@ -80,7 +82,7 @@ class Publisher
 
       myurl = buildURL(options)
       puts myurl
-      
+
       myjson = ""
       filename = options.f
 
@@ -89,9 +91,15 @@ class Publisher
         return
       end
 
-      myjson = get_file_as_string(filename)
-      puts myjson
+      file = File.read(filename)
+      hmaps = JSON::parse(file)
 
+      hmaps.each do |hmap|
+        puts hmap
+        myjson = JSON::generate(hmap)
+        response = RestClient.post myurl, myjson, :content_type => :'application/json'
+        puts response
+      end
     end
 end
 
