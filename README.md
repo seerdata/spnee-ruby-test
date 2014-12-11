@@ -10,12 +10,15 @@ ruby restfile.rb -f mydata.json
 ```
 
 Reads JSON data from the file mydata.json and makes a REST API call to the
-endpoint **http://localhost:4567/api/1.0/event**.  To see other parameters
-run this command.
+endpoint
+
+**http://localhost:4567/api/1.0/event**
 
 ```
 ruby restfile.rb -h
 ```
+
+To see other parameters run this command.
 
 #### queueread.rb
 
